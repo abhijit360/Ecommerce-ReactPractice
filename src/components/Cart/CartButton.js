@@ -5,7 +5,7 @@ import { cartActions } from "../../store/cartStore";
 const CartButton = (props) => {
   const totalItems = useSelector((state) => {
     let total = 0;
-    state.cart.products.foreach((value, key, map) => {
+    state.cart.products.forEach((value, key, map) => {
       total += value;
     });
     return total;
@@ -15,7 +15,7 @@ const CartButton = (props) => {
     <button className={classes.button}>
       <span
         onClick={() => {
-          dispatch(cartActions.displayCart);
+          dispatch(cartActions.displayCart());
         }}
       >
         My Cart
