@@ -1,24 +1,27 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-let productMap = new Map();
-const cartState = { products: productMap, cartVisibility: false };
+
+const cartState = { products: {}, cartVisibility: false };
 
 export const cartSlice = createSlice({
   name: "cartSlice",
   initialState: cartState,
   reducers: {
     addProduct(state, action) {
-      if (!state.products.has(action.name)) {
-        state.products.set(action.name, 1);
+      const Productname = action.payload.Productname;
+      console.log("ProductName", Productname);
+      if (!(Productname in state.products)) {
+        state.products[Productname] = 1
       } else {
-        state.products.set(action.name, state.products.get(action.name) + 1);
+        state.products[Productname] += 1
       }
     },
     removeProduct(state, action) {
-      if (!products.has(action.name)) {
-        state.products.set(action.name, state.products.get(action.name) -1);
+      const {Productname} = action.payload.Productname;
+      if (Productname in state.products) {
+        state.products[Productname] -= 1
       } else {
-        console.log("can't decrement past zero")
+        console.log("Error! Can't derement something that does not exist")
       }
     },
     displayCart(state) {

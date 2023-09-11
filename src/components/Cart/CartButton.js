@@ -5,9 +5,10 @@ import { cartActions } from "../../store/cartStore";
 const CartButton = (props) => {
   const totalItems = useSelector((state) => {
     let total = 0;
-    state.cart.products.forEach((value, key, map) => {
+    for(const [key, value] of Object.entries(state.cart.products)){
       total += value;
-    });
+    };
+
     return total;
   });
   const dispatch = useDispatch();
